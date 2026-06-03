@@ -39,6 +39,9 @@ description: "Use when a problem may require root-cause analysis, multi-solution
 - After mode routing, use `assets/output-contract.md` as the required response skeleton
 
 ### Root Cause
+- Preserve the user-stated causal chain before generalizing the issue
+- If the user already names a suspected mechanism, restate it as evidence or a hypothesis and test whether the solution directly covers each link
+- Distinguish the document's internal rule from the upstream agent-loading trigger that makes the document visible
 - Output the most credible root cause
 - Tie the root cause back to explicit evidence, not only intuition
 - Distinguish evidence, inference, and unverified hypotheses
@@ -52,6 +55,7 @@ description: "Use when a problem may require root-cause analysis, multi-solution
 
 ### Verification
 - Include forward verification and reverse verification
+- Include a requirement-coverage check: every explicit user-stated failure mechanism must be mapped to the recommended solution or explicitly rejected with evidence
 - Reverse verification must include:
 - One normal scenario
 - One extreme scenario
@@ -65,6 +69,7 @@ description: "Use when a problem may require root-cause analysis, multi-solution
 - Decide whether the result should stay local, be promoted into repeatable guidance, or be captured as a reusable learning
 
 ## Non-Negotiables
+- Do not convert a user-stated upstream trigger problem into a downstream document-content fix without proving the upstream trigger is already covered
 - Do not rely on scripts as sole truth
 - Separate evidence from inference
 - Separate unverified hypotheses from confirmed findings
