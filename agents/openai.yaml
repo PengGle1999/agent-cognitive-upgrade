@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Cognitive Upgrade"
+  short_description: "Analyze recurring, ambiguous, or high-risk failures deeply"
+  default_prompt: "Use agent-cognitive-upgrade to test competing causes, solution coverage, residual risk, and verification depth."

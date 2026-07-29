@@ -1,77 +1,85 @@
 ---
 name: agent-cognitive-upgrade
-description: "Use when a problem may require root-cause analysis, multi-solution exploration, coverage analysis, or forward/reverse verification across normal work and governance work."
+description: Use when a problem repeats, a prior fix or verification failed, the user corrects an earlier causal judgment, evidence conflicts, multiple causes may interact, root cause or 5 Why is requested, solution coverage is uncertain, or failure could cross systems or cause serious harm.
 ---
 
-# Agent Cognitive Upgrade System
+# Agent Cognitive Upgrade
 
-## When To Use
-- Use when any of these activation rules is true:
-- Repeated issue in the same subsystem, workflow, or governance rule
-- Governance drift, repeated reminder, or semantic misunderstanding risk
-- Cross-project risk, repeat-entry risk, or shared workflow exposure
-- High-risk failure modes that may require stronger verification and escalation
-- Do not activate for routine one-shot work when no recurrence, no governance drift, and no elevated risk signal is present
+## Overview
 
-## Start Gate
-- Before analysis, remind once to switch to a stronger model / reasoning setting if available
-- If the user does not switch, continue, but explicitly mark the analysis depth as limited before presenting findings
-- Then classify `Light / Standard / Deep`
-- Mode precedence is mandatory:
-  1. If any Deep trigger is present, use `Deep`
-  2. Else use `Light` only if all Light conditions are satisfied
-  3. Else use `Standard`
-- Default behavior: when the case is not clearly all-Light and not any-Deep, route to `Standard`
+Increase reasoning breadth before depth, test competing causal paths, and verify
+how far a solution actually defends. Do not turn every task into an audit.
 
-## Required Flow
-1. Trigger
-2. Root Cause
-3. Solution
-4. Coverage
-5. Verification
-6. Escalation
-7. Learning Promotion
+## Entry Gate
 
-### Trigger
-- State which activation signals are present
-- State whether analysis depth is full or limited
-- Apply mode routing using `assets/mode-gate.md`
-- After mode routing, use `assets/output-contract.md` as the required response skeleton
+Read [entry-gate.md](references/entry-gate.md) first.
 
-### Root Cause
-- Preserve the user-stated causal chain before generalizing the issue
-- If the user already names a suspected mechanism, restate it as evidence or a hypothesis and test whether the solution directly covers each link
-- Distinguish the document's internal rule from the upstream agent-loading trigger that makes the document visible
-- Output the most credible root cause
-- Tie the root cause back to explicit evidence, not only intuition
-- Distinguish evidence, inference, and unverified hypotheses
+- Return to ordinary work when the result is `no escalation`.
+- Use `Standard` for bounded multi-path analysis.
+- Use `Deep` for repeated failure, high risk, governance failure, interacting
+  causes, or an explicit request for full analysis.
+- An explicit invocation of this skill is at least `Standard`.
 
-### Solution
-- Produce at least 2 candidate solutions unless only 1 viable option remains, and explicitly state why only 1 remains
-- Name the recommended solution and why it is preferred
+## Deep Is A Blocking Gate
 
-### Coverage
-- Map where the failure can recur: code, docs, workflow, governance, repeat-entry points, or other affected routes
+Before Deep analysis, stop and obtain user confirmation unless the current
+request explicitly authorizes skipping this confirmation. A request for
+"complete", "full", or "Deep" analysis is a trigger, not a waiver. A waiver must
+explicitly say to skip the gate or begin Deep without another question, and the
+current task must already list the accepted capability limits or have shown
+them to the user. "Continue with current conditions" alone is not a waiver. Do
+not perform Deep analysis in the same response as the confirmation request.
 
-### Verification
-- Include forward verification and reverse verification
-- Include a requirement-coverage check: every explicit user-stated failure mechanism must be mapped to the recommended solution or explicitly rejected with evidence
-- Reverse verification must include:
-- One normal scenario
-- One extreme scenario
-- One upstream-failure / self-drift question
-- If verification fails, route back to the upstream stage that must be reworked
+The gate must:
 
-### Escalation
-- Keep escalation open when risk prevention, recovery path, or governance correction is still incomplete
+1. explain the trigger in plain language;
+2. recommend the highest available reasoning capability and stronger reasoning
+   setting without prescribing a permanent model;
+3. explain what stronger reasoning can and cannot improve;
+4. report whether independent cause generation, independent flaw review,
+   required evidence, files, and tools are actually available;
+5. state the concrete effect of continuing with current limitations;
+6. offer: switch then continue, accept limits and continue, or limited analysis.
 
-### Learning Promotion
-- Decide whether the result should stay local, be promoted into repeatable guidance, or be captured as a reusable learning
+If model capability is unknown, say it is unknown. Never self-certify that the
+current model is sufficient.
+
+## Analysis
+
+After the gate:
+
+1. Read [analysis-workflow.md](references/analysis-workflow.md).
+2. Preserve any user-provided causal chain as a hypothesis.
+3. Map distinct mechanism families before using 5 Why.
+4. Rank and investigate important branches without forcing one root cause.
+5. Separate evidence, inference, and unknowns.
+6. Design controls for the causal links they actually cover.
+7. Read [verification-and-coverage.md](references/verification-and-coverage.md)
+   before concluding.
+
+Use [reasoning-patterns.md](references/reasoning-patterns.md) as a quick
+reference. Use [portable-global-gate.md](references/portable-global-gate.md)
+only when helping someone install a generic pre-skill trigger.
 
 ## Non-Negotiables
-- Do not convert a user-stated upstream trigger problem into a downstream document-content fix without proving the upstream trigger is already covered
-- Do not rely on scripts as sole truth
-- Separate evidence from inference
-- Separate unverified hypotheses from confirmed findings
-- Perform reverse verification
-- If verification fails, route back upstream
+
+- Do not replace an upstream trigger failure with a downstream content fix.
+- Do not treat 5 Why as proof that the chosen path is correct.
+- Do not claim independent review unless another independent pass occurred.
+- Do not treat independent agreement as new observation evidence.
+- Do not silently drop distinct mechanism families from independent generation.
+- Do not expand the user's causal chain without relabeling adjacent mechanisms.
+- Do not hide residual risk or unknowns that could change the conclusion.
+- For every important defense scenario, do not omit prevention, detection,
+  recovery, likelihood, impact, or residual-risk decision.
+- Do not rely on a script, checklist, or confidence label as sole truth.
+- Route failed verification back to the earliest invalid stage.
+
+## Common Mistakes
+
+| Mistake | Correction |
+|---|---|
+| One deep chain only | Expand distinct mechanism families first |
+| Every unknown blocks completion | Block only overturning or safety-changing unknowns |
+| A shortened table implies coverage | Keep prevention, detection, recovery, likelihood, impact, and risk decision |
+| Deep starts immediately | Stop for confirmation unless directly preauthorized |

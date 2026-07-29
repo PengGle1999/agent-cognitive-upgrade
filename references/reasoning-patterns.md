@@ -1,19 +1,32 @@
 # Reasoning Patterns
 
-## Root Cause
-- User-Stated Causal Chain: extract the user's claimed mechanism as subject -> missing trigger -> downstream failure -> recurrence risk, then test the proposed solution against each link
-- Ask why until the controlling failure is found
-- Tie the proposed root cause back to explicit evidence
-- Distinguish containment from root cause
-- Distinguish corrective from preventive action
+## Cause Breadth
 
-## Self-Challenge
-- Did the solution answer the user's actual causal mechanism, or only a nearby symptom?
-- What if this root cause is wrong?
-- What competing hypothesis still explains the evidence?
-- What evidence is still missing?
+- **OR:** each cause can independently produce the observation.
+- **AND:** multiple conditions must coexist.
+- **Shared upstream:** one controller creates several downstream symptoms.
+- **Amplifier:** not sufficient alone, but increases likelihood or impact.
 
-## Reverse Verification
-- One normal scenario
-- One extreme scenario
-- One upstream-failure question: "What if the solution itself becomes the next source of drift?"
+Do not count synonyms or adjacent symptoms as separate mechanism families.
+
+## Cause Depth
+
+Use 5 Why, a causal graph, fault tree, timeline, or counterfactual after cause
+breadth. Apply the depth tool separately to high-priority branches.
+
+## Challenge
+
+- What evidence would make this hypothesis less credible?
+- Which test distinguishes it from the nearest competitor?
+- Does the proposed control break the causal link or only hide the symptom?
+- Could the control become a new failure source?
+- Which unknown could change the safety boundary or preferred solution?
+- Did I expand the user's hypothesis into adjacent or contradictory mechanisms?
+- Did I silently omit an independent candidate or mislabel primary synthesis?
+- Is apparent absence real evidence, or could instrumentation be incomplete?
+
+## Confidence
+
+Confidence is a summary of evidence quality, not proof. Lower it when evidence
+is indirect, sources conflict, independent review is unavailable, or important
+tests cannot be run.
