@@ -22,9 +22,16 @@ For every important defense scenario record:
 with a reason. Do not accept irreversible, authorization, high-impact, or
 data-loss risk only because likelihood appears low.
 
-All seven columns are required whenever the analysis proposes or evaluates
-controls for that scenario, regardless of how the user phrased the request. Do
-not collapse likelihood and impact into an unexplained overall judgment.
+Keep all seven aspects for every important defense scenario; a compact note
+may replace the table, not the reasoning. Mark inapplicable aspects with a
+reason. Keep likelihood and impact separate; a reported recurrence with unknown
+frequency is not an unobserved or low-risk possibility. Risk acceptance or
+transfer must respect the user's authority, never create authorization.
+
+For each important prevention/detection/recovery claim, link its applicable
+scenario and version to evidence, result, and uncovered boundary. Distinguish
+design expectation, simulated validation, actual-environment validation, and
+untested. Do not claim a layer or wider environment from another layer's PASS.
 
 ## Verification Set
 
@@ -37,6 +44,14 @@ not collapse likelihood and impact into an unexplained overall judgment.
    for the scenarios where they are asserted?
 6. **Prior-defense failure:** For recurrence, why did the earlier defense and
    its verification fail to catch this case?
+
+Derive the expected result from the requirement or an independent observation,
+not from the implementation/helper being tested. Use boundary cases and, where
+useful, a known-bad control to check that the test can detect the target fault.
+Isolate co-changes when claiming causation. Verify introduced failure modes and
+actual-environment behavior only where those claims are made; do not relabel a
+planned check as executed. Reuse valid evidence; rerun only for a relevant
+change, failure, or unresolved concern.
 
 If a check fails, return to the earliest invalid stage: observation, cause
 space, hypothesis ranking, solution design, or coverage.
@@ -51,11 +66,15 @@ Stop when all are true:
   solution, safety boundary, or verification strategy;
 - high-priority candidates explain the observations without unresolved
   contradictions;
-- candidates are ranked by likelihood, impact, and testability;
+- evidence-based causal credibility and investigation priority are kept separate;
 - high-impact scenarios are prevented or have reliable detection and recovery;
 - uncovered scenarios and their risk decisions are explicit;
 - new branches no longer change the solution, safety boundary, risk, or
   verification strategy.
+
+State what is stopping: investigation, a bounded correction, or a completed
+validation. A useful correction can be verified while event causation remains
+unknown; do not close the latter by implication.
 
 Continue or escalate when an unknown could:
 

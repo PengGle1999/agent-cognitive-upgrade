@@ -1,10 +1,13 @@
 # Analysis Workflow
 
-## 1. Define The Observation
+## 1. Define The Problem And Observation
 
-Record the observed result, timeline, scope, impact, constraints, and what is
-not yet known. Preserve the user's causal chain verbatim enough to test each
-link; label it as evidence, inference, or hypothesis.
+Establish the intended outcome and its source, expected versus observed
+behavior, and success criteria. Check observation reliability: identity,
+version, time window, and actual data source. A reported difference is not yet
+a proven defect. Compare a successful and failed case when available.
+Record scope, impact, constraints, timeline, and unknowns. Preserve the user's
+causal chain precisely as a testable hypothesis; separate evidence and inference.
 
 ## 2. Build The Cause Space
 
@@ -15,8 +18,12 @@ Generate distinct mechanism families before selecting a path:
 - If the user supplied a causal chain in Deep, retain it and add at least two
   alternatives.
 
-Classify relationships as OR, AND, shared upstream, or amplifier. Reject
-duplicate wording that describes the same mechanism.
+These floors prevent premature closure; a count is not proof of sufficient
+breadth. Do not shrink them just because one candidate has supporting evidence.
+Check whether framing or observation could explain the apparent fault; state
+why inapplicable if excluded. Retain the strongest competing explanation and
+what the leading one cannot explain. Count different mechanisms and predictions,
+not synonyms or adjacent symptoms. Classify OR, AND, shared upstream, or amplifier.
 
 ### Blind Independent Generation
 
@@ -52,15 +59,18 @@ When reconciling the independent output:
 
 ## 3. Rank And Deepen
 
-Rank candidates by likelihood, impact, and testability. Apply 5 Why, a causal
-graph, fault tree, or timeline separately to high-priority branches. Allow
-multiple roots and shared upstream controls.
+Rank causal credibility by evidence alone; without distinguishing evidence,
+leave candidates tied. Choose investigation order by decision value, cost,
+impact, testability, and reversibility; cheap to test or severe if true does not
+mean more likely.
+Use 5 Why, a causal graph, fault tree, or timeline on important branches only
+after breadth. Allow multiple roots and shared upstream controls.
 
 ## 4. Hypothesis-Evidence Matrix
 
 For each important candidate record:
 
-| Candidate | Support | Conflict | Discriminating test | Impact if true | Status |
+| Candidate | Support | Conflict | Discriminating test and predicted outcomes | Impact if true | Status |
 |---|---|---|---|---|---|
 
 Allowed status:
@@ -71,7 +81,10 @@ Allowed status:
 - insufficient evidence;
 - unverified hypothesis.
 
-Do not promote an inference to confirmed merely because it is coherent.
+Before testing, state how results would distinguish candidates and change the
+decision. Afterward, update status from actual results, including contradictions
+and inconclusive results. Never invent probabilities or promote a coherent
+story to confirmed. Support for one cause does not exclude its competitors.
 
 ## 5. Adversarial Review
 
@@ -93,6 +106,12 @@ the affected analysis is not a completed review loop.
 
 ## 6. Design The Solution
 
+Where the choice materially affects outcomes or tradeoffs, compare a few real
+alternatives: repair the mechanism, remove a fragile step/state/dependency,
+contain impact with detection/recovery, or retain the current state with an
+explicit risk decision. Assess effect, complexity, maintenance, side effects,
+and reversibility. Do not invent alternatives for an already clear correction.
+
 Use only applicable layers:
 
 - containment: reduce current impact;
@@ -102,4 +121,7 @@ Use only applicable layers:
 - recovery: restore a safe state.
 
 Map each control to a causal link. State when a control treats only a symptom or
-downstream layer.
+downstream layer. A reversible control may help across several unresolved
+causes: distinguish permission to use that control from confirmation of a root
+cause. Recovery after a change alone cannot distinguish co-changes, coincidence,
+or competing explanations.

@@ -20,6 +20,12 @@ and verifies how far a proposed solution actually defends.
 - Explicit stop/continue rules so low-impact unknowns do not cause endless
   analysis, while important untested candidates stay open.
 
+Version **v2.1.0** also checks problem framing and test oracles, distinguishes
+investigation priority from causal credibility, and binds claims to their
+tested environment. Model-upgrade confirmation and the two/three-family floors
+remain. Improvement and rule-promotion review is conditional, not a ritual
+after every task; its effectiveness needs original, new, and ordinary cases.
+
 ## Install
 
 Clone or download this repository into your Codex skills directory:
@@ -38,6 +44,7 @@ agent-cognitive-upgrade/
 └── references/
     ├── analysis-workflow.md
     ├── entry-gate.md
+    ├── improvement.md
     ├── portable-global-gate.md
     ├── reasoning-patterns.md
     └── verification-and-coverage.md
@@ -67,7 +74,8 @@ waive the blocking confirmation required before `Deep`.
 Before Deep analysis, the agent must explain:
 
 - why Deep was triggered;
-- whether stronger reasoning settings may help;
+- whether switching to a stronger available model is advisable, with reasoning
+  effort considered separately;
 - what stronger reasoning cannot provide;
 - whether independent agents, evidence, files, and tools are available;
 - the concrete limitations of continuing now.
@@ -93,7 +101,25 @@ At minimum, test:
 5. several cause families remain distinct;
 6. independent review is not claimed when unavailable;
 7. important untested candidates prevent stopping;
-8. low-impact unknowns can remain documented without endless analysis.
+8. low-impact unknowns can remain documented without endless analysis;
+9. wrong framing and implementation-derived expected results are challenged;
+10. successful correction is not relabeled as proven event causation;
+11. proposed improvements repair the failed layer, are tested for transfer and
+    normal-task regressions, and have revision/withdrawal criteria;
+12. ordinary tasks do not load the conditional improvement workflow.
+
+Compare against the prior version with identical evidence and tools. Record
+actual reads, clarification burden, and quality; document size alone cannot
+prove runtime efficiency. Keep original outputs, baseline passes, failed cases,
+and untested claims visible. These are maintenance tests, not a required suite
+for every task using the skill.
+
+The v2.1.0 maintenance check covered synthetic framing/oracle cases, bounded
+regressions, model-upgrade confirmation, conditional loading, and semantic
+review. The prior version also passed the core comparison cases; these results
+do not establish improved real-world recurrence rates or general reasoning
+ability. Core required text stayed approximately flat, but paired answers grew;
+no overall token or time saving has been demonstrated.
 
 ## Design Boundary
 

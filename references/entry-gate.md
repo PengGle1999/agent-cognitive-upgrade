@@ -4,83 +4,50 @@
 
 ### No Escalation
 
-Return to ordinary work only when all are true:
-
-- the task is routine, local, and reversible;
-- the cause is directly evidenced or diagnosis is not needed;
-- there is no repeated failure, contradictory evidence, governance drift, or
-  meaningful safety impact;
-- the user did not explicitly invoke this skill.
-
-Examples: translation, formatting, simple lookup, or a proven one-line local
-correction.
+Return to ordinary work only for routine, local, reversible work with an
+evidenced cause or no diagnosis needed, no recurrence, conflicting evidence,
+governance drift or meaningful safety impact, and no explicit skill invocation.
+Examples: translation, formatting, lookup, proven one-line correction.
 
 ### Standard
 
-Use when at least two plausible mechanism families require comparison, the
-problem can recur, or coverage is uncertain, but impact and ambiguity remain
-bounded.
-
-Minimum:
-
-- two distinct mechanism families;
-- evidence and hypothesis separation;
-- one discriminating test for each important candidate;
-- solution-to-cause mapping;
-- explicit stopping decision.
+Use for bounded ambiguity/impact when competing mechanisms need comparison,
+recurrence is possible, or coverage is uncertain. Require at least two distinct
+mechanism families, evidence/hypothesis separation, a discriminating test for
+each important candidate, solution-to-cause mapping, and a stopping decision.
 
 ### Deep
 
-Use when any applies:
-
-- repeated failure after an earlier fix or verification;
-- high-impact, irreversible, data-loss, authorization, privacy, financial,
-  physical-safety, or loss-of-control risk;
-- governance or control-system failure;
-- multiple causes may interact across systems;
-- user explicitly requests full/deep analysis.
-
-Minimum:
-
-- three distinct mechanism families;
-- Deep blocking confirmation;
-- blind independent cause generation when available;
-- independent flaw review when available;
-- defense coverage and residual-risk review.
+Use after a fix/verification fails again; for governance/control-system failure,
+interacting cross-system causes, explicit full/deep requests, or high-impact,
+irreversible, data-loss, authorization, privacy, financial, physical-safety or
+loss-of-control risk. Require at least three distinct families, blocking
+confirmation, blind independent cause generation and flaw review when available,
+plus defense coverage and residual-risk review.
 
 ## Explicit Invocation
 
-When the user explicitly invokes this skill, `no escalation` is forbidden.
-Route to at least Standard. Explicit invocation does not automatically waive
-the Deep confirmation.
+Explicit invocation requires at least Standard, never `no escalation`; it does
+not waive Deep confirmation.
 
 ## Current-Task Preauthorization
 
-Before the gate has been shown, skip the confirmation only when both are true:
+Before showing the gate, skip it only if the current request explicitly says
+to skip/not repeat it or begin Deep without another question, AND lists the
+accepted capability limits or those limits were already shown in this task.
+Full/deep analysis, finding all roots, "continue", "use current conditions",
+avoiding unnecessary questions, old approval, or general preferences alone
+are not waivers.
 
-1. the current request explicitly says to skip the gate, not repeat the
-   confirmation, or begin Deep without another question; and
-2. the current request lists the capability limits it accepts, or those limits
-   were already shown in the current task.
-
-These phrases alone are not waivers:
-
-- "analyze completely";
-- "perform Deep analysis";
-- "find the full root cause";
-- "continue";
-- "use the current conditions";
-- "do not ask unnecessary questions";
-- an older approval or a general preference.
-
-They trigger Deep but do not prove the user saw and accepted this gate.
-
-After the gate has been shown in the current task, a direct reply selecting
-`accept these limits and continue Deep` is explicit authorization to proceed.
-Do not ask for an additional skip phrase or repeat the same gate. A bare
-`continue` remains ambiguous unless it clearly selects that displayed option.
+After showing it, direct selection of `accept these limits and continue Deep`
+authorizes proceeding. Do not demand an additional skip phrase or reconfirm.
+A bare `continue` is ambiguous unless it clearly selects that displayed option.
 
 ## Deep Gate Template
+
+The gate lets the user upgrade the model as difficulty rises, not merely ask
+for longer reasoning. Report model identity only if verifiable, else unknown.
+Never self-certify sufficiency or silently change the model.
 
 Use plain language:
 
